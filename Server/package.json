@@ -6,12 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch src/ --exec ts-node ./src/server.ts -e ts",
-    "typerm": "ts-node ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js -d ./src/config/database.ts",
+    "typeorm:migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -d ./src/config/database.ts ./src/entities/migrations/migration --timestamp",
+    "typeorm:migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/config/database"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.11"
   },
   "devDependencies": {
