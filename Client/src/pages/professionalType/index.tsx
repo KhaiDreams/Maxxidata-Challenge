@@ -25,8 +25,6 @@ export function ProfessionalType() {
     
     const [professionalsType, setProfessionalsType] = useState<IProfessionalType[]>([]);
     const [search, setSearch] = useState('');
-    const [updateProfessionalList, setUpdateProfessionalList] = useState<boolean>(false);
-    const [isActiveProfessionalType, setIsActiveProfessionalType] = useState<boolean | null>(null);
 
     const [firstPageIndex, setFirstPage] = useState(0);
     const [lastPageIndex, setLastPage] = useState(10);
@@ -34,7 +32,8 @@ export function ProfessionalType() {
     const filterProfessionalType = search.length > 0 ? 
         professionalsType.filter((professional) =>
             professional.descricao.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-            professional.id.includes(search)
+            professional.id.includes(search) ||
+            String(professional.situacao).includes(search)
         ) : 
         professionalsType.slice(firstPageIndex, lastPageIndex);
 
@@ -45,18 +44,12 @@ export function ProfessionalType() {
             .then((response) => {
                 const professionals = response.data;
 
-                if(isActiveProfessionalType !== null) {
-                    const filter = professionalsType.filter(professional => professional.situacao === isActiveProfessionalType);
-    
-                    return setProfessionalsType(filter);
-                }
-
                 return setProfessionalsType(professionals);
             })
             .catch((err) => {
                 toast.error(err.response.data.message);
             })
-    }, [updateProfessionalList, addProfessionalTypeModal, editProfessionalTypeModal]);
+    }, [addProfessionalTypeModal, editProfessionalTypeModal]);
 
     return (
         <Layout>
@@ -76,7 +69,7 @@ export function ProfessionalType() {
                 
                 <S.SpaceBetween>
                     <Input
-                        name="SearchProfessional"
+                        name="SearchProfessionalType"
                         placeholder="Pesquisar"
                         type="search"
                         onChange={(e) => setSearch(e.target.value)}
@@ -86,34 +79,32 @@ export function ProfessionalType() {
                         placeholderColor="#00000"
                     />
                     <div>
-                        <Select 
-                            name="Ativo"
-                            onChange={(e) => {
-                                const value = e?.target.value;
+                    <Select 
+                        name="IsActiveProfessional"
+                        onChange={(e) => {
+                            const value = e?.target.value;
 
-                                if (value === "all") {
-                                    setIsActiveProfessionalType(null);
-                                    setUpdateProfessionalList(!updateProfessionalList);
-                                    return;
-                                }
+                            if (value !== "all") {
+                                setSearch(String(value));
+                                return;
+                            }
 
-                                setIsActiveProfessionalType(value === "true" ? true : false);
-                                setUpdateProfessionalList(!updateProfessionalList);
-                            }}
-                            options={[
-                                {
-                                    label: "Todos",
-                                    value: "all"
-                                },
-                                {
-                                    label: "Ativo",
-                                    value: "true"
-                                },
-                                {
-                                    label: "Inativo",
-                                    value: "false"
-                                },
-                            ]}
+                            setSearch('');
+                        }}
+                        options={[
+                            {
+                                label: "Todos",
+                                value: "all"
+                            },
+                            {
+                                label: "Ativo",
+                                value: "true"
+                            },
+                            {
+                                label: "Inativo",
+                                value: "false"
+                            },
+                        ]}
                         />
                     </div>
                 </S.SpaceBetween>

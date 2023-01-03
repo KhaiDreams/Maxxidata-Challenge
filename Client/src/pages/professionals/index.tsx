@@ -37,7 +37,8 @@ export function Professional() {
             professional.profissionalId.includes(search) ||
             professional.id.includes(search) ||
             professional.telefone.includes(search) ||
-            professional.email.includes(search)
+            professional.email.includes(search) ||
+            String(professional.situacao).includes(search)
         ) : 
         professionals.slice(firstPageIndex, lastPageIndex);
 
@@ -94,14 +95,12 @@ export function Professional() {
                             onChange={(e) => {
                                 const value = e?.target.value;
 
-                                if (value === "all") {
-                                    setIsActiveProfessional(null);
-                                    setUpdateProfessionalList(!updateProfessionalList);
+                                if (value !== "all") {
+                                    setSearch(String(value));
                                     return;
                                 }
 
-                                setIsActiveProfessional(value === "true" ? true : false);
-                                setUpdateProfessionalList(!updateProfessionalList);
+                                setSearch('');
                             }}
                             options={[
                                 {

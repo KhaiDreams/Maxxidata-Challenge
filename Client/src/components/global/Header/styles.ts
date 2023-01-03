@@ -14,6 +14,8 @@ export const Container = styled.header`
     top: 0;
     right: 0;
 
+    z-index: 999;
+
     a {
         text-decoration: none;
     }
