@@ -1,0 +1,427 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Maxxidata Challenge",
+        "description": "Desafio Fullstack Maxxidata",
+        "version": "1.0.0",
+        "contact": {
+            "email": "alex.crispa02@gmail.com"
+        }
+    },
+    "paths": {
+        "/profissional/criar": {
+            "post": {
+                "summary": "Criar novo profissional",
+                "description": "Rota responsavel para criação de um novo profissional",
+                "tags": [
+                    "Profissional"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProfessional"
+                            },
+                            "examples": {
+                                "value": {
+                                    "nome": "John",
+                                    "email": "customer@customer.com",
+                                    "telefone": "11996066964"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Professional"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/profissional/editar": {
+            "post": {
+                "summary": "Editar profissional",
+                "description": "Rota responsavel por editar um profissinal",
+                "tags": [
+                    "Profissional"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChangeProfessional"
+                            },
+                            "examples": {
+                                "value": {
+                                    "id": "uuid",
+                                    "nome": "John",
+                                    "email": "customer@customer.com",
+                                    "telefone": "11996066964",
+                                    "situacao": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Professional"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/profissionais": {
+            "get": {
+                "summary": "Listar todos os profissionais",
+                "description": "Rota responsável por retornar todos os profissionais",
+                "tags": [
+                    "Profissional"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfessionalList"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/profissional/tipo/criar": {
+            "post": {
+                "summary": "Criar profissão",
+                "description": "Rota responsavel por criar uma profissão",
+                "tags": [
+                    "Profissional"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProfessionalType"
+                            },
+                            "examples": {
+                                "value": {
+                                    "situacao": true,
+                                    "descricao": "Médico"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfessionalType"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/profissional/tipo/editar": {
+            "post": {
+                "summary": "Editar profissão",
+                "description": "Rota responsavel por editar uma profissão",
+                "tags": [
+                    "Profissional"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChangeProfessionalType"
+                            },
+                            "examples": {
+                                "value": {
+                                    "id": "uuid",
+                                    "situacao": true,
+                                    "descricao": "Médico"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfessionalType"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/profissinal/tipos": {
+            "get": {
+                "summary": "Listar todos os tipos de profissionais",
+                "description": "Rota responsável por retornar todos os tipos profissionais",
+                "tags": [
+                    "Profissional"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfessionalTypeList"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateProfessional": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "telefone": {
+                        "type": "string"
+                    }, 
+                    "profissionalId": {
+                        "type": "string"
+                    },
+                    "situacao": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ChangeProfessional": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "telefone": {
+                        "type": "string"
+                    }, 
+                    "situacao": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Professional": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "telefone": {
+                        "type": "string"
+                    }, 
+                    "profissionalId": {
+                        "type": "string"
+                    },
+                    "situacao": {
+                        "type": "boolean"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ProfessionalList": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "telefone": {
+                            "type": "string"
+                        },
+                        "profissionalId": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "ProfessionalType": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "situacao": {
+                        "type": "boolean"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CreateProfessionalType": {
+                "type": "object",
+                "properties": {
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "situacao": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ChangeProfessionalType": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "situacao": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ProfessionalTypeList": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "descricao": {
+                            "type": "string"
+                        },
+                        "situacao": {
+                            "type": "boolean"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

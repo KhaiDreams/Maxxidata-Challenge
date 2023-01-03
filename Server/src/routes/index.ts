@@ -3,6 +3,6 @@ import { accountsRoutes } from "./accountRoutes";
 
 const routes = Router();
 
-routes.use("/accounts", accountsRoutes);
+routes.use(accountsRoutes);
 
 export { routes };

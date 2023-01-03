@@ -1,5 +1,7 @@
 import { DataSource, DataSourceOptions } from "typeorm";
-import {User} from "../entities/account";
+
+import { Professional } from "../entities/Professional";
+import { ProfessionalType } from "../entities/ProfessionalType";
 
 const connectionOptions: DataSourceOptions = {
     type: "postgres",
@@ -10,7 +12,8 @@ const connectionOptions: DataSourceOptions = {
     database: process.env.DB_DATABASE || "postgres",
     synchronize: false,
     entities: [
-      User,
+      Professional,
+      ProfessionalType
     ],
     migrations: [__dirname + '../../entities/migrations/*{.ts,.js}'],
   };

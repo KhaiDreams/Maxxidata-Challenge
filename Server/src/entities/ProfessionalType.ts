@@ -1,29 +1,19 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity("Users")
-export class User {
+@Entity("ProfissionalTipo")
+export class ProfessionalType {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
-  nome: string;
+  descricao: string;
 
-  @Column()
-  telefone: string;
-  
-  @Column()
-  email: string;
-
-  @Column()
-  tipoDeProfissional: string;
-
-  @Column({default:true})
+  @Column({ default:true })
   situacao: boolean;
 
   @UpdateDateColumn()
-  uptatedAt: Date;
+  updatedAt: Date;
 
   @CreateDateColumn()
   createdAt: Date;
 }
-
