@@ -25,7 +25,7 @@ export async function CreateUserController(request: Request, response: Response)
         situacao
     }: IRequest = request.body;
 
-    if(!IsUUID(profissionalId)) {
+    if(!IsUUID(profissionalId || '')) {
         throw new AppError("ID inválido", 400);
     }
 
@@ -65,5 +65,5 @@ export async function CreateUserController(request: Request, response: Response)
 
     await professionalRepository.save(professional);
 
-    return response.status(200).json(professional);
+    return response.status(201).json(professional);
 }

@@ -25,7 +25,7 @@ export async function UpdateUserController(request: Request, response: Response)
         telefone
     }: IRequest = request.body;
 
-    if(!IsUUID(id)) {
+    if(!IsUUID(id) || '') {
         throw new AppError("ID inválido", 400);
     }
 

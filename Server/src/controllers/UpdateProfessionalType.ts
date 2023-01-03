@@ -19,7 +19,7 @@ export async function UpdateProfessionalType(request: Request, response: Respons
         situacao
     }: IRequest = request.body;
 
-    if(!IsUUID(id)) {
+    if(!IsUUID(id) || '') {
         throw new AppError("ID inválido", 400);
     }
 
